@@ -48,7 +48,11 @@ def _handle_nan(x):
 @_rule('STRING')
 def _handle_string(x: str):
 	assert x.startswith(('"', "'")) and x.endswith(('"', "'")), f'Unterminated string: {x}'
-	return ast.parse(f'"""{x[1:-1]}"""').body[0].value.value
+	obj = ast.parse(f'"""{x[1:-1]}"""').body[0].value
+	try:
+		return obj.value
+	except AttributeError:
+		return obj.s
 
 
 @lru_cache()
