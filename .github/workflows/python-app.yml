@@ -1,0 +1,40 @@
+name: Test JQpy
+
+on:
+    push:
+        branches: [ $default-branch ]
+    pull_request:
+        branches: [ $default-branch ]
+
+permissions:
+    contents: read
+
+jobs:
+    test:
+        
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: [ "3.6", "3.7", "3.8", "3.9", "3.10", "3.11", "3.12" ]
+        
+        steps:
+            -
+                uses: actions/checkout@v4
+            -
+                name: Set up Python ${{ matrix.python-version }}
+                uses: actions/setup-python@v4
+                with:
+                    python-version: ${{ matrix.python-version }}
+            -
+                name: Install dependencies
+                run:  |
+                      apt-get update
+                      apt-get install -y jq
+                      python -m pip install --upgrade pip setuptools wheel
+                      cd tests
+                      pip install -r requirements.txt
+            -
+                name: Test with pytest
+                run:  |
+                      cd tests
+                      pytest

@@ -1,0 +1,14 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "jqpy"
+authors = [{ name = "baterflyrity", email = "baterflyrity@yandex.ru" }]
+readme = "README.md"
+dynamic = ["version", "description"]
+keywords = ['jq', 'json', 'query', 'binding', 'processor']
+
+[project.urls]
+Documentation = "https://baterflyrity.github.io/jqpy"
+Source = "https://github.com/baterflyrity/jqpy"

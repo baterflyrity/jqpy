@@ -1,0 +1,10 @@
+<map id="inheritance5e3e2df22d" name="inheritance5e3e2df22d">
+<area shape="rect" id="node1" title="Base jqpy exception." alt="" coords="114,5,209,31"/>
+<area shape="rect" id="node2" title="Jq binary executable (typically jq.exe in Windows and /usr/bin/jq in Unix) ws not found." alt="" coords="5,79,144,104"/>
+<area shape="rect" id="node3" title="Processing was not finished successfully." alt="" coords="169,79,327,104"/>
+<area shape="rect" id="node5" title="Processing was failed." alt="" coords="94,152,237,177"/>
+<area shape="rect" id="node6" title="Processing took too much time." alt="" coords="261,152,401,177"/>
+<area shape="rect" id="node4" title="Result of processing was corrupted." alt="" coords="23,225,153,251"/>
+<area shape="rect" id="node7" title="Processing was aborted of finished with errors." alt="" coords="177,225,308,251"/>
+<area shape="rect" id="node8" title="Raw jq binary evaluation results." alt="" coords="233,5,348,31"/>
+</map>
