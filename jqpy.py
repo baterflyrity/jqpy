@@ -165,10 +165,11 @@ def jq(filter: str = '', data: Union[JSON, _TEmptyInput] = EmptyInput, *, timeou
 		except Exception as e:
 			raise ValueError(f'Bad input data passed to jq. Input must be any JSON compatible object (see https://docs.python.org/3/library/json.html). Given input: {data}') from e
 	with NamedTemporaryFile('w+', encoding='utf8', delete=False) as f:
+		tmp = Path(f.name)
 		try:
 			f.write(filter)
 			f.close()
-			args.extend(['--from-file', str(Path(f.name).resolve())])
+			args.extend(['--from-file', str(tmp.resolve())])
 			try:
 				p = subprocess.Popen(args, executable=shutil.which('jq'), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False, encoding='utf8')
 				p.stdin.write(data_str)
@@ -184,7 +185,8 @@ def jq(filter: str = '', data: Union[JSON, _TEmptyInput] = EmptyInput, *, timeou
 				p.kill()
 				raise JQTimeoutError(f'Filtration timed out and was killed.\n\nFiltration command: {filter}') from e
 		finally:
-			Path(f.name).unlink(missing_ok=True)
+			if tmp.exists():
+				tmp.unlink()
 	if raw_output:
 		return RawOutput(stdout=p.stdout.read(), stderr=p.stderr.read(), code=p.returncode, filter=filter)
 	err = p.stderr.read()
