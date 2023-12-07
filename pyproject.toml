@@ -12,3 +12,6 @@ keywords = ['jq', 'json', 'query', 'binding', 'processor']
 [project.urls]
 Documentation = "https://baterflyrity.github.io/jqpy"
 Source = "https://github.com/baterflyrity/jqpy"
+
+[tool.flit.sdist]
+exclude = ['documentation/*.*', 'documentation/Makefile', '.github', '.gitignore', 'tests']
